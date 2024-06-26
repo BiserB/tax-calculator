@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Taxation.Common\Taxation.Common.csproj" />
-    <ProjectReference Include="..\Taxation.Domain\Taxation.Domain.csproj" />
-  </ItemGroup>
-
 </Project>

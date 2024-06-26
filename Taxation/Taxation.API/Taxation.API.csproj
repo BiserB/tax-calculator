@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Taxation.Domain\Taxation.Domain.csproj" />
+    <ProjectReference Include="..\Taxation.Common\Taxation.Common.csproj" />
+    <ProjectReference Include="..\Taxation.Services\Taxation.Services.csproj" />
   </ItemGroup>
 
 </Project>
