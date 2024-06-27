@@ -13,9 +13,9 @@ namespace Taxation.Domain.Rules
         {
             var maxCharityAmount = context.TaxableGrossIncome * MaxCharityRate;
 
-            var charitySpent = Math.Min(context.CharitySpent, maxCharityAmount);
+            var charityDeduction = Math.Min(context.CharitySpent, maxCharityAmount);
 
-            context.TaxableGrossIncome -= charitySpent;
+            context.TaxableGrossIncome -= charityDeduction;
         }
     }
 }

@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Taxation.Common.Models.Config;
-using Taxation.Common.Models.Input;
+using Taxation.API.Models;
 using Taxation.Common.Models.Response;
-using Taxation.Services.Factories;
 using Taxation.Services.Features.Calculations;
 using Taxation.Services.Features.Information;
 
@@ -31,13 +28,6 @@ namespace Taxation.API.Controllers
         [HttpPost]
         public ActionResult<Taxes> CalculateTaxes([FromBody] TaxPayer taxPayer)
         {
-            if (taxPayer == null)
-            {
-                return BadRequest("Invalid TaxPayer data.");
-            }
-
-            
-
             var taxes = _taxCalculator.Calculate(taxPayer.GrossIncome, taxPayer.CharitySpent);
 
             return Ok(taxes);

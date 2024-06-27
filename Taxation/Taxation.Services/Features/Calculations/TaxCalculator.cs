@@ -23,7 +23,7 @@ namespace Taxation.Services.Features.Calculations
             _rules.Add(rule);
         }
 
-        public ITaxationContext Calculate(decimal grossIncome, decimal charitySpent)
+        public ITaxationContext Calculate(decimal grossIncome, decimal? charitySpent)
         {
             var context = new TaxationContext(grossIncome, charitySpent);
 

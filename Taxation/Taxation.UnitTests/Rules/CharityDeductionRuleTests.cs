@@ -30,14 +30,13 @@ namespace Taxation.UnitTests.Rules
             // Arrange
             var rule = new CharityDeductionRule();
             var context = new TaxationContext(grossIncome, charity);
+            var expectedCharityDeduction = Math.Min(context.CharitySpent, context.TaxableGrossIncome * rule.GetMaxCharityRate());
 
             // Act
             rule.Apply(context);
 
-
-            // Assert
-            var charityDeducted = Math.Min(context.CharitySpent, context.TaxableGrossIncome * rule.GetMaxCharityRate());
-            Assert.Equal(grossIncome - charityDeducted, context.TaxableGrossIncome);
+            // Assert            
+            Assert.Equal(grossIncome - expectedCharityDeduction, context.TaxableGrossIncome);
         }
     }
 }
