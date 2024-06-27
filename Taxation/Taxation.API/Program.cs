@@ -1,4 +1,5 @@
 using Taxation.API.Extensions;
+using Taxation.API.Models.Config;
 using Taxation.Common.Models.Config;
 
 namespace Taxation.API
@@ -13,10 +14,13 @@ namespace Taxation.API
             builder.Services.AddBusinessServices();
 
             builder.Services.Configure<TaxSettings>(builder.Configuration.GetSection("TaxSettings"));
+            builder.Services.Configure<CacheSettings>(builder.Configuration.GetSection("CacheSettings"));
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddMemoryCache();
 
             var app = builder.Build();
 
@@ -29,7 +33,6 @@ namespace Taxation.API
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

@@ -7,8 +7,7 @@ namespace Taxation.API.Extensions
     {
         public static void AddInfrastructureServices(this IServiceCollection services)
         {
-            //services.AddTransient<MyDatabaseService>();
-            //services.AddTransient<MyFileService>();
+            
         }
 
         public static void AddBusinessServices(this IServiceCollection services)
