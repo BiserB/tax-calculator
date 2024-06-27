@@ -1,5 +1,7 @@
-﻿using Taxation.Common.Models.Config;
+﻿using System.Reflection;
+using Taxation.Common.Models.Config;
 using Taxation.Domain.Rules;
+using Taxation.Domain.Rules.Base;
 using Taxation.Domain.Rules.Interfaces;
 
 namespace Taxation.Services.Factories

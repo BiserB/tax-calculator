@@ -6,17 +6,18 @@ namespace Taxation.Domain.Rules
 {
     public class SocialContributionRule : TaxationRule
     {        
-        private const decimal MaxTaxableIncome = 3000;
+        private const decimal MaxTaxableLimit = 3000;
         private const decimal ContributionRate = 0.15m;
 
-        public decimal GetMaxTaxableIncome() => MaxTaxableIncome;
+        public decimal GetMaxTaxableLimit() => MaxTaxableLimit;
         public decimal GetContributionRate() => ContributionRate;
+        public decimal GetMaxTaxableIncome() => MaxTaxableLimit - DomainConstants.TaxFreeLimit;
 
         public override void Apply(ITaxationContext context)
         {
             if (context.TaxableGrossIncome > DomainConstants.TaxFreeLimit)
             {
-                var taxableIncome = Math.Min(context.TaxableGrossIncome, MaxTaxableIncome - DomainConstants.TaxFreeLimit);
+                var taxableIncome = Math.Min(context.TaxableGrossIncome, GetMaxTaxableIncome());
                 
                 var contribution = taxableIncome * ContributionRate;
 

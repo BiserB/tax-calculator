@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Taxation.Common.Models.Config;
 using Taxation.Common.Models.Input;
 using Taxation.Common.Models.Response;
@@ -13,10 +14,12 @@ namespace Taxation.API.Controllers
     public class CalculatorController : ControllerBase
     {
         private readonly InfoProvider _infoProvider;
+        private readonly TaxCalculator _taxCalculator;
 
-        public CalculatorController(InfoProvider infoProvider)
+        public CalculatorController(InfoProvider infoProvider, TaxCalculator taxCalculator)
         {
-            this._infoProvider = infoProvider;
+            _infoProvider = infoProvider;
+            _taxCalculator = taxCalculator;
         }
 
         [HttpGet(Name = "GetLegislation")]
@@ -33,19 +36,9 @@ namespace Taxation.API.Controllers
                 return BadRequest("Invalid TaxPayer data.");
             }
 
-            var configurations = new List<TaxRuleConfiguration>
-            {
-                new TaxRuleConfiguration { RuleType = TaxRuleType.TaxFree, Order = 1 },
-                new TaxRuleConfiguration { RuleType = TaxRuleType.CharityDeduction, Order = 2 },
-                new TaxRuleConfiguration { RuleType = TaxRuleType.IncomeTax, Order = 3 },
-                new TaxRuleConfiguration { RuleType = TaxRuleType.SocialContribution, Order = 4 }
-            };
+            
 
-            var rules = TaxationRuleFactory.CreateTaxRules(configurations.OrderBy(c => c.Order).ToList());
-
-            var taxCalculator = new TaxCalculator(rules);
-
-            var taxes = taxCalculator.Calculate(taxPayer.GrossIncome, taxPayer.CharitySpent);
+            var taxes = _taxCalculator.Calculate(taxPayer.GrossIncome, taxPayer.CharitySpent);
 
             return Ok(taxes);
         }

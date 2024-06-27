@@ -1,4 +1,5 @@
 using Taxation.API.Extensions;
+using Taxation.Common.Models.Config;
 
 namespace Taxation.API
 {
@@ -10,6 +11,8 @@ namespace Taxation.API
 
             builder.Services.AddInfrastructureServices();
             builder.Services.AddBusinessServices();
+
+            builder.Services.Configure<TaxSettings>(builder.Configuration.GetSection("TaxSettings"));
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

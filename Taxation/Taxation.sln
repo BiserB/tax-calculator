@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxation.Services", "Taxati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxation.Common", "Taxation.Common\Taxation.Common.csproj", "{70FC2712-395C-4911-B4B4-9172F04ED937}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taxation.UnitTests", "Taxation.UnitTests\Taxation.UnitTests.csproj", "{09C5D55F-A89B-4457-AE83-D3773642FFE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{70FC2712-395C-4911-B4B4-9172F04ED937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70FC2712-395C-4911-B4B4-9172F04ED937}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70FC2712-395C-4911-B4B4-9172F04ED937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09C5D55F-A89B-4457-AE83-D3773642FFE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09C5D55F-A89B-4457-AE83-D3773642FFE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09C5D55F-A89B-4457-AE83-D3773642FFE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09C5D55F-A89B-4457-AE83-D3773642FFE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

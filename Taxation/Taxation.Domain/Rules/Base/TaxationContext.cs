@@ -4,6 +4,14 @@ namespace Taxation.Domain.Rules.Base
 {
     public class TaxationContext : ITaxationContext
     {
+        public TaxationContext(decimal grossIncome, decimal charitySpent = 0m)
+        {
+            GrossIncome = grossIncome;
+            TaxableGrossIncome = grossIncome;
+            NetIncome = grossIncome;
+            CharitySpent = charitySpent;
+        }
+
         public decimal GrossIncome { get; set; }
 
         public decimal TaxableGrossIncome { get; set; }

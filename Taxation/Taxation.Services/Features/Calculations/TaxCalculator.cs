@@ -1,15 +1,21 @@
-﻿using Taxation.Domain.Rules.Base;
+﻿using Taxation.Common.Models.Config;
+using Taxation.Domain.Rules.Base;
 using Taxation.Domain.Rules.Interfaces;
+using Microsoft.Extensions.Options;
+using Taxation.Services.Factories;
 
 namespace Taxation.Services.Features.Calculations
 {
     public class TaxCalculator
     {
-        private readonly List<ITaxationRule> _rules = new List<ITaxationRule>();
+        private readonly List<ITaxationRule> _rules;
+        private readonly TaxSettings _taxSettings;
 
-        public TaxCalculator(List<ITaxationRule> rules)
+        public TaxCalculator(IOptions<TaxSettings> configuration)
         {
-            _rules = rules;
+            _taxSettings = configuration.Value;
+
+            _rules = TaxationRuleFactory.CreateTaxRules(_taxSettings.Rules.OrderBy(c => c.Order).ToList());
         }
 
         public void AddRule(ITaxationRule rule)
@@ -19,13 +25,7 @@ namespace Taxation.Services.Features.Calculations
 
         public ITaxationContext Calculate(decimal grossIncome, decimal charitySpent)
         {
-            var context = new TaxationContext
-            {
-                GrossIncome = grossIncome,
-                TaxableGrossIncome = grossIncome,
-                NetIncome = grossIncome,
-                CharitySpent = charitySpent
-            };
+            var context = new TaxationContext(grossIncome, charitySpent);
 
             foreach (var rule in _rules)
             {

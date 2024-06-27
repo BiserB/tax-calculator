@@ -14,7 +14,7 @@ namespace Taxation.API.Extensions
         public static void AddBusinessServices(this IServiceCollection services)
         {
             services.AddTransient<InfoProvider>();
-            //services.AddTransient<TaxCalculator>();
+            services.AddTransient<TaxCalculator>();
         }
     }
 }
